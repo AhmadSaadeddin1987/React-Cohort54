@@ -1,67 +1,60 @@
-/* App container */
 .app {
   max-width: 1200px;
-  margin: 30px auto;
+  margin: 40px auto;
   padding: 20px;
   font-family: Arial, sans-serif;
 }
 
-/* App title */
 .app h1 {
   text-align: center;
-  margin-bottom: 24px;
-  font-size: 3.5rem;
+  margin-bottom: 32px;
+  font-size: 2.5rem;
   color: greenyellow;
 }
 
-/* Categories component */
 .categories {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   justify-content: center;
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 10px;
+  margin-bottom: 40px;
 }
 
 .categories button {
-  padding: 10px 16px;
-  border: 1px solid #1E90FF;
-  background: white;
+  padding: 8px 14px;
+  border: 1px solid #1e90ff;
+  background-color: white;
+  color: #1e90ff;
   cursor: pointer;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 .categories button:hover {
-  background: #1E90FF;
+  background-color: #1e90ff;
   color: white;
 }
 
 .categories button.active {
-  background: black;
+  background-color: black;
   color: white;
 }
 
-/* Products component */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 28px;
+  grid-template-columns: 1fr;
+  gap: 20px;
   justify-items: center;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 100px 20px;
 }
 
-/* Product card */
 .product-card {
+  width: 100%;
+  max-width: 260px;
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 
@@ -69,7 +62,6 @@
   transform: translateY(-4px);
 }
 
-/* Product image */
 .product-card img {
   width: 100%;
   height: auto;
@@ -77,15 +69,31 @@
   border-radius: 5px;
 }
 
-/* Product title */
 .product-card h3 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 10px 0 6px;
 }
 
-/* Product price */
 .product-card p {
   font-size: 1rem;
   font-weight: bold;
   color: #333;
+}
+
+@media (min-width: 600px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1060px) {
+  .products {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
 }
