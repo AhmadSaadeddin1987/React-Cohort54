@@ -44,12 +44,11 @@
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(1, 1fr);
-    justify-items: center;
+    gap: 20px;
   }
 
   .product-card {
-    width: 100%;
-    max-width: 360px;
+    
     border: 1px solid #ddd;
     padding: 12px;
     border-radius: 8px;
@@ -103,7 +102,7 @@
 
   @media (min-width: 600px) {
     .products {
-      grid-template-columns: repeat(2, 1fr);
+      margin: 0 10px;
     }
   }
 

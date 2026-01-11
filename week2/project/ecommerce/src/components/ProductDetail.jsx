@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 function ProductDetail() {
 const { id } = useParams();
+
 const [product, setProduct] = useState(null);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(null);
@@ -30,7 +31,9 @@ return (
     <p>€ {product.price}</p>
     <p>{product.description}</p>
     <p>Category: {product.category}</p>
-    <p>Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
+    <p>
+    Rating: {product.rating.rate} ({product.rating.count} reviews)
+    </p>
 </div>
 );
 }
