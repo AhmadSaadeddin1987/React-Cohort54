@@ -9,16 +9,19 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  // ---------------------------
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
+  const [categoriesError, setCategoriesError] = useState(null);
+
+  const [productsLoading, setProductsLoading] = useState(false);
+  const [productsError, setProductsError] = useState(null);
+
   // Fetch categories from API
-  // ---------------------------
+
   useEffect(() => {
     const fetchCategories = async () => {
-      setLoading(true);
-      setError(null);
+      setCategoriesLoading(true);
+      setCategoriesError(null);
 
       try {
         const res = await fetch("https://fakestoreapi.com/products/categories");
@@ -27,22 +30,22 @@ function App() {
         setCategories(data);
       } catch (err) {
         console.error(err);
-        setError("Failed to load categories");
+        setCategoriesError("Failed to load categories");
       } finally {
-        setLoading(false);
+        setCategoriesLoading(false);
       }
     };
 
     fetchCategories();
   }, []);
 
-  // ---------------------------
+
   // Fetch products from API
-  // ---------------------------
+
   useEffect(() => {
     const fetchProducts = async () => {
-      setLoading(true);
-      setError(null);
+      setProductsLoading(true);
+      setProductsError(null);
 
       const url = selectedCategory
         ? `https://fakestoreapi.com/products/category/${encodeURIComponent(
@@ -57,9 +60,9 @@ function App() {
         setProducts(data);
       } catch (err) {
         console.error(err);
-        setError("Failed to load products");
+        setProductsError("Failed to load products");
       } finally {
-        setLoading(false);
+        setProductsLoading(false);
       }
     };
 
@@ -72,29 +75,32 @@ function App() {
         <h1>Ecommerce</h1>
 
         <Routes>
-          {/* Home page */}
           <Route
             path="/"
             element={
               <>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                {loading && <p>Loading...</p>}
-
-                {!loading && !error && (
-                  <>
-                    <Categories
-                      categories={categories}
-                      selectedCategory={selectedCategory}
-                      setSelectedCategory={setSelectedCategory}
-                    />
-                    <Products products={products} />
-                  </>
+                {/* Categories Section */}
+                {categoriesLoading && <p>Loading categories...</p>}
+                {categoriesError && (
+                  <p style={{ color: "red" }}>{categoriesError}</p>
                 )}
+                <Categories
+                  categories={categories}
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                />
+
+                {/* Products Section */}
+                {productsLoading && <p>Loading products...</p>}
+                {productsError && (
+                  <p style={{ color: "red" }}>{productsError}</p>
+                )}
+                <Products products={products} />
               </>
             }
           />
 
-          {/* Product detail page */}
+
           <Route path="/product/:id" element={<ProductDetail />} />
         </Routes>
       </div>
